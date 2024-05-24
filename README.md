@@ -8,11 +8,11 @@ numpy, netCDF4, os
 The scripts can generate 3 different types of files for Greenland and Antarctica
 
 ### grid description files (needed for CDO regridding)
-  grid_CISM3_g?_<IS>_<res>.nc
+  grid_CISM3_g?_IS_res.nc
 ### xy coordinates 
-  xy_CISM3_g?_<IS>_<res>.nc
+  xy_CISM3_g?_IS_res.nc
 ### area factors 
-  af2_CISM3_g?_<IS>_<res>.nc
+  af2_CISM3_g?_IS_res.nc
 
 All files are produced for the grids g1 (ice thickness, SMB, ..) and g0 (horizontal velocities)
   CISM3_AIS_multigrid_generater_nc.py  
