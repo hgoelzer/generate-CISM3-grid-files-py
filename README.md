@@ -3,7 +3,7 @@ Python scripts to generate grid description files used for cdo regridding for CI
 
 ## Setup
 Needs a python3 environment with  
-numpy, netCDF4, os
+numpy, netCDF4
 
 The scripts can generate 3 different types of files for Greenland and Antarctica
 
