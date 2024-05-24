@@ -7,7 +7,23 @@ from generate_CDO_files_nc import generate_CDO_files
 def isaninteger(x):
     return np.mod(x, 1) == 0
 
-# Specify mapping information. This is EPSG 3413 for GrIS
+##### Typically the only part a user needs to modify
+# Specify various ISM grids at different resolution
+rk = [16]
+#rk = [16, 8, 4, 2, 1]
+#rk = [0.5]
+#rk = [240] # upper limit
+
+# Choose which output file to write
+flag_nc = True
+flag_xy = True
+flag_af2 = True
+#####
+
+# Output angle type (degrees or radians)
+output_data_type = 'degrees'
+
+# Mapping information. This is EPSG 3413 for GrIS
 proj_info = {}
 proj_info['earthradius'] = 6378137.0
 proj_info['eccentricity'] = 0.081819190842621
@@ -19,24 +35,9 @@ proj_info['hemisphere'] = 'north'
 proj_info['falseeasting'] = -720000
 proj_info['falsenorthing'] = -3450000
 
-# Specify output angle type (degrees or radians)
-output_data_type = 'degrees'
-
-# Specify various ISM grids at different resolution
-#rk = [16, 8, 4, 2, 1]
-rk = [16]
-#rk = [0.5]
-#rk = [240] # upper limit
-#rk = [80]
-
-# grid dimensions of 1 km base grid
+# Grid dimensions of 1 km base grid
 nx_base = 1681
 ny_base = 2881
-
-# choose which output file to write
-flag_nc = True
-flag_xy = True
-flag_af2 = True
 
 
 # CISM g1 grid where ice thickness and SMB are defined
@@ -78,6 +79,7 @@ for r in rk:
         agrid['dy'] = r*1000.
         agrid['nx'] = int(nx)
         agrid['ny'] = int(ny)
+        # g0 grid is offset by half a grid size
         agrid['offsetx'] = r*1000./2.
         agrid['offsety'] = r*1000./2.
         agrid['LatLonOutputFileName'] = 'grid_CISM3_g0_GrIS_{:05d}m.nc'.format(int(r*1000))
